@@ -1,17 +1,18 @@
-@Library("SharedLibraries@master") _
+@Library("SharedLibraries") _
 
 pipeline {
-   agent none
+   agent any
 
    stages {
-       stage('Checkout Global Library') {
+       stage('Checkout Shared Library') {
            steps {
                script{
-                   globalBootstrap {
-                       libraryName   = "datio-workflowlibs"
-                       libraryBranch = "feature/Python-qa"
+                   bootstrap {
+                       libraryName   = "isortegah-workflowlibs"
+                       libraryBranch = "master"
                        entrypointParams = [
                            nodeLabel         : "bash"
+                           
                        ]
                    }
                }
