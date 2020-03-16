@@ -1,42 +1,54 @@
-@Library("workflowlibs@master") _
-
 pipeline {
    agent none
 
    stages {
-       stage('Checkout Global Library') {
-           steps {
-               script{
-                   globalBootstrap {
-                       libraryName   = "datio-workflowlibs"
-                       libraryBranch = "feature/Python-qa"
-                       entrypointParams = [
-                           nodeLabel         : "spark"
-                       ]
-                   }
-               }
-           }
-       }
+      stage('Run Tests') {
+         parallel{
+             stage ('Test in bash'){
+                 agent{ label 'bash'}
+                 steps {
+                     echo "Hello World"
+                     sleep 10
+                 }
+             }
+             stage('Test in bash2'){
+                 agent{ label 'bash2'}
+                 steps {
+                     echo "Hello World"
+                     sleep 10
+                     sh '''
+                        echo "Multiline shell steps works too"
+                        ls -lah
+                    '''
+                 }
+             }
+         }
+         
+      }
+      stage('Test') {
+       agent{ label 'bash2'}
+                steps {
+                    echo "Hello World"
+                    sleep 10
+                }   
+      }
    }
-
    post {
-       always {
-           echo "We have been through the entire pipeline"
-       }
-       changed {
-           echo "There have been some changes from the last build"
-       }
-       success {
-           echo "Build successful"
-       }
-       failure {
-           echo "There have been some errors"
-       }
-       unstable {
-           echo "Unstable"
-       }
-       aborted {
-           echo "Aborted"
-       }
-   }
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful'
+        }
+        failure {
+            echo 'This will run only if failed'
+        }
+        unstable {
+            echo 'This will run only if the run was marked as unstable'
+        }
+        changed {
+            echo 'This will run only if the state of the Pipeline has changed'
+            echo 'For example, if the Pipeline was previously failing but is now successful'
+        }
+    }
 }
