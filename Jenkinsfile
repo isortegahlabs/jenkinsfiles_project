@@ -4,7 +4,19 @@ pipeline {
    agent any
 
     triggers {
-        cron('H/5 * * * *')
+        cron('H/10 * * * *')
+    }
+    options { 
+        buildDiscarder(
+            logRotator(
+                daysToKeepStr: '5',
+                numToKeepStr: '15',
+                artifactDaysToKeepStr: '5',
+                artifactNumToKeepStr:'5'
+            )
+        ) 
+        preserveStashes(buildCount: 5) 
+        disableConcurrentBuilds()
     }
    stages {
        stage('Checkout Shared Library') {
