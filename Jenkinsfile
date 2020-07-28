@@ -94,7 +94,6 @@ pipeline {
                 sleep 2
             }
         }
-        
     }
    post {
         always {
