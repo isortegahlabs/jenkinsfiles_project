@@ -24,6 +24,77 @@ pipeline {
                 }
             }   
         }
+        stage('Validate') {
+            steps {
+                echo "Stage Validate"
+                sleep 2
+            }
+        }
+        stage('Compile') {
+            agent{ label 'bash'}
+            steps {
+                echo "Stage Compile"
+                sleep 2
+            }
+        }
+        stage('testUT') {
+            agent{ label 'bash'}
+            steps {
+                echo "Stage testUT"
+                sleep 2
+            }
+        }
+        stage('Build') {
+            agent{ label 'bash'}
+            steps {
+                echo "Stage Build"
+                sleep 2
+            }
+        }
+        stage('parallel tests'){
+            parallel {
+                stage('testAT') {
+                    agent{ label 'bash'}
+                    steps {
+                        echo "Stage testAT"
+                        sleep 2
+                    }
+                }
+                stage('testIT') {
+                    agent{ label 'bash2'}
+                    steps {
+                        echo "Stage testIT"
+                        sleep 2
+                    }
+                }
+            }
+        }
+        stage('parallel deploy'){
+            parallel {
+                stage('Deploy') {
+                    agent{ label 'bash'}
+                    steps {
+                        echo "Stage Deploy"
+                        sleep 2
+                    }
+                }
+                stage('Docker') {
+                    agent{ label 'bash2'}
+                    steps {
+                        echo "Stage Docker"
+                        sleep 2
+                    }
+                }
+            }
+        }
+        stage('Release') {
+            agent{ label 'bash'}
+            steps {
+                echo "Stage Release"
+                sleep 2
+            }
+        }
+        
     }
    post {
         always {
