@@ -15,7 +15,12 @@
 
 - Cuando el nodo sea configurado con private key, a parte de que debe estar en known_hosts debemos verificar que este en el archivo **authorized_keys** la parte publica de la llave.
 
+- Script para ejecutar **jenkinsci/blueocean** en Mac
+```bash 
+#!/bin/bash
+docker run -u root --network jenkins -v jenkins-docker-certs:/certs/client -v /Users/isortegah/Jenkins:/var/jenkins_home -v /Users/isortegah:/home -v /var/run/docker.sock:/var/run/docker.sock --group-add daemon -p 8082:8080 jenkinsci/blueocean
+```
 # Referencias
 
-- [Host Key Verification for SSH Agents
-](https://support.cloudbees.com/hc/en-us/articles/115000073552-Host-Key-Verification-for-SSH-Agents)
+- [Host Key Verification for SSH Agents](https://support.cloudbees.com/hc/en-us/articles/115000073552-Host-Key-Verification-for-SSH-Agents)
+- [Using Docker with Pipeline](https://www.jenkins.io/doc/book/pipeline/docker/#specifying-a-docker-label)
