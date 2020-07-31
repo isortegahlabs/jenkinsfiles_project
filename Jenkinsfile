@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('prev'){
+        stage('verify'){
             steps {
                 sleep 1
             }
