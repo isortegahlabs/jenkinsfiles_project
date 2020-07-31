@@ -15,5 +15,11 @@ pipeline {
                 sh 'mvn --version'
             }
         }
+        stage('delete') {
+            agent any
+            steps {
+                sh 'docker rmi $(docker images |egrep maven| cut -c43-54)'
+            }
+        }
     }
 }
