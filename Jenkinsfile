@@ -1,17 +1,16 @@
 pipeline {
     agent any
+
     stages {
         stage('prev'){
             steps {
-                sleep 15
+                sleep 1
             }
         }
-    }
-    stages {
-        agent { 
+        stage('build') {
+            agent { 
        docker { image 'maven:slim' } 
         }
-        stage('build') {
             steps {
                 sh 'mvn --version'
             }
