@@ -33,15 +33,13 @@ pipeline {
         stage('Compile') {
             agent{ label 'bash'}
             steps {
-                echo "Stage Compile"
-                sleep 2
+                sh 'mvn compile'
             }
         }
         stage('testUT') {
             agent{ label 'bash'}
             steps {
-                echo "Stage testUT"
-                sleep 2
+                sh 'mvn test'
             }
         }
         stage('Build') {
