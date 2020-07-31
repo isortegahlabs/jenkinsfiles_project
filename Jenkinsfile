@@ -9,8 +9,8 @@ pipeline {
         }
         stage('build') {
             agent { 
-       docker { image 'maven:slim' } 
-        }
+                docker { image 'maven:slim' } 
+            }
             steps {
                 sh 'mvn --version'
             }
