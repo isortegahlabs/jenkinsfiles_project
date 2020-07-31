@@ -1,9 +1,16 @@
 pipeline {
-   agent { 
-       docker { image 'maven:slim' 
-       args '-u root -p 8081:8081 -v /var/run/docker.sock:/var/run/docker.sock  '
-       } }
+    agent any
     stages {
+        stage('prev'){
+            steps {
+                sleep 15
+            }
+        }
+    }
+    stages {
+        agent { 
+       docker { image 'maven:slim' } 
+        }
         stage('build') {
             steps {
                 sh 'mvn --version'
