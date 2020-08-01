@@ -1,8 +1,5 @@
 pipeline {
-   agent none
-    tools {
-        maven 'mvn'
-    }
+   agent none   
     stages {
         stage('Verify') {
             agent{ label 'bash2'}
@@ -34,6 +31,9 @@ pipeline {
         }
         stage('Compile') {
             agent{ label 'bash'}
+            tools {
+                maven 'mvn'
+            }
             steps {
                 sh 'mvn compile'
             }
@@ -41,7 +41,9 @@ pipeline {
         stage('testUT') {
             agent{ label 'bash'}
             steps {
-                sh 'mvn test'
+                withMaven(maven: 'mvn') {
+                    sh 'mvn test'
+                }
             }
         }
         stage('Build') {
