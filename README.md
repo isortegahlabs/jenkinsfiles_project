@@ -15,6 +15,36 @@
 
 - Cuando el nodo sea configurado con private key, a parte de que debe estar en known_hosts debemos verificar que este en el archivo **authorized_keys** la parte publica de la llave.
 
+
+# Ejecución de MAVEN
+
+- Se ha tenido que realizar las siguientes configuraciones para poder utilizar los comandos **mvn**
+
+    - Dar de alta en la opción **Global Tool Configuration** la instalación de maven.
+    ![](imgs/mvnConfiguration.png)
+    - Considerar el nombre ya que se utilizara despues.
+    - El **Path** debe ser hasta antes de **bin/mvn**
+    - En el pipeline se utilizara la siguiente opción.
+
+        ```bash
+        tools {
+            maven '<nombre que se le dió a la instalción>'
+        }
+        ```  
+    - Otra opción es la siguiente:
+        ```bash
+            node{
+            stage('init'){
+            //init sample
+            }
+            stage('build'){
+                withMaven(maven: 'mvn') {
+                    sh "mvn clean package"
+                }
+            }
+        }
+        ```
+
 # Referencias
 
 - [Host Key Verification for SSH Agents
