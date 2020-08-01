@@ -49,5 +49,5 @@
 
 # Referencias
 
-- [Host Key Verification for SSH Agents
-](https://support.cloudbees.com/hc/en-us/articles/115000073552-Host-Key-Verification-for-SSH-Agents)
+- [Host Key Verification for SSH Agents](https://support.cloudbees.com/hc/en-us/articles/115000073552-Host-Key-Verification-for-SSH-Agents)
+- [Documentación sintaxis](https://www.jenkins.io/doc/book/pipeline/syntax/)
