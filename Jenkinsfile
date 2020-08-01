@@ -1,6 +1,8 @@
 pipeline {
    agent none
-
+    tools {
+        maven 'M3'
+    }
     stages {
         stage('Verify') {
             agent{ label 'bash2'}
