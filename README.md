@@ -44,6 +44,8 @@
             }
         }
         ```
+    - Un poco de documentación:
+    ![](imgs/docTool.png)
 
 # Referencias
 
