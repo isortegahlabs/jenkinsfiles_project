@@ -51,3 +51,4 @@
 
 - [Host Key Verification for SSH Agents
 ](https://support.cloudbees.com/hc/en-us/articles/115000073552-Host-Key-Verification-for-SSH-Agents)
+- [Activar SSH](https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/)
